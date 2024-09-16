@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="grid-x">
+  <div class="cell medium-offset-1 medium-10 large-offset-1 large-10" style="display:flex; justify-content:center;">
+        <div class="rsvp-container">
+            <h1 style="text-align: center; color: white;">RSVP</h1>
+            <form id="RSVP">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required>
+
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="phone">Topping:</label>
+                <input type="text" id="topping" name="topping">
+
+                <label for="attendance">Will you attend?</label>
+                <select class="" id="attendance" name="attendance" required>
+                    <option value="">Please select</option>
+                    <option value="1">Yes, I will attend</option>
+                    <option value="2">Maybe, I might attend</option>
+                    <option value="0">No, I cannot attend</option>
+                </select>
+
+                <input type="submit" value="Submit RSVP">
+            </form>
+        </div>
+  </div>
+</div>
+
+<div class="grid-x" id="RSVPSuccessMessage" style="display: none;">
+    <div class="cell" style="color: white; text-align: center; font-family: monospace;">
+     Thanks for RSVPing! See who's attending
+    </div>
+</div>
+
+<div class="grid-x" id="attendeesButton" style=" display:none; height: 60px; margin-top: 20px;">
+    <div class="cell small-offset-1 small-10 medium-offset-5 medium-2 large-offset-5 large-2" data-selector="" style="background-color:#ff4d4d; display: flex; justify-content: center; align-items: center;  font-family: monospace; font-size: 25px; cursor: pointer">
+        Attendees
+
+    </div>
+
+</div>
+
+
+
+<script src="~/js/RSVP/rsvp.js"></script>
+
+
