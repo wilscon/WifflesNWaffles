@@ -17,14 +17,18 @@ header {
 
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
-body {
-    height: 100%;
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
     background-color: black;
+}
 
+main {
+    flex: 1;
+    overflow-y: auto; /* Allows scrolling if the content overflows */
 }
 
 
@@ -148,3 +152,4 @@ canvas {
 .navbar-nav .nav-link.active {
     text-decoration: underline; /* Underlines the active link */
 }
+

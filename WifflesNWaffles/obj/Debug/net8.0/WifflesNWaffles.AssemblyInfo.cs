@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WifflesNWaffles")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d6767606274a6d51634f1033eacd41faf8008e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e383e731e5ea5ef65ff48a3eda25661e0870eb8c")]
 [assembly: System.Reflection.AssemblyProductAttribute("WifflesNWaffles")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WifflesNWaffles")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
