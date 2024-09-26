@@ -9,6 +9,9 @@ using System.Xml;
 using WifflesNWaffles.Data;
 using WifflesNWaffles.Models;
 using WifflesNWaffles.Enums;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 using static Azure.Core.HttpHeader;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -18,6 +21,9 @@ namespace WifflesNWaffles.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
+
+        
+
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
@@ -82,10 +88,7 @@ namespace WifflesNWaffles.Controllers
         public async Task<IActionResult> Submit([FromBody] RSVPModel form)
         {
 
-            /*if (await _context.attendees.AnyAsync(a => a.Email == form.Email))
-            {
-                return BadRequest(new { success = false, message = "You have already RSVPed with this email" });
-            }*/
+           
 
             RSVPDBModel Model = new RSVPDBModel
             {
@@ -98,6 +101,9 @@ namespace WifflesNWaffles.Controllers
 
             };
 
+
+
+            
             try
             {
                 _context.attendees.Add(Model);

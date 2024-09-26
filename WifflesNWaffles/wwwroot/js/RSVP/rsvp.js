@@ -1,10 +1,5 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-
-var elements = {
-
+﻿
+const elements = {
     form: $('#RSVP'),
     firstname: $('#firstname'),
     lastname: $('#lastname'),
@@ -14,62 +9,54 @@ var elements = {
     attendance: $('#attendance'),
     successMessage: $('#RSVPSuccessMessage'),
     attendeesButton: $('#attendeesButton'),
-    
-
 }
-
 
 const initialize = function () {
-
     elements.attendeesButton.click(viewAttendees);
-    
-
-
+    elements.form.on("submit", submit);
 }
 
-const viewAttendees = function () {
-    
+const viewAttendees = function () {   
     document.location.href = "/home/attendees";
 }
 
+const submit = function (event) {
 
-
-document.getElementById("RSVP").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    alert("form submitted");
-
-    var firstname = elements.firstname.val();
-    var lastname = elements.lastname.val();
-    var email = elements.email.val();
-    var phone = elements.phone.val();
-    var topping = elements.topping.val();
-    var attendance = elements.attendance.val();
+    let firstname = elements.firstname.val();
+    let lastname = elements.lastname.val();
+    let email = elements.email.val();
+    let phone = elements.phone.val();
+    let topping = elements.topping.val();
+    let attendance = elements.attendance.val();
 
     let formData = {
-
         firstname: firstname,
         lastname: lastname,
         email: email,
         phoneNumber: phone,
         topping: topping,
         attendance: Number(attendance),
-
     }
 
     $.ajax({
-        url: '/Home/Submit', // Replace with your actual action method URL
+        url: '/Home/Submit',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(formData),
         success: function (response) {
             if (response.success) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
                 elements.successMessage.css("display", "");
                 elements.attendeesButton.css("display", "");
                 elements.form[0].reset();
 
                 elements.form.css("display", "none");
-                
+
 
             } else {
                 alert("Failed to submit contact information.");
@@ -79,8 +66,7 @@ document.getElementById("RSVP").addEventListener("submit", function (event) {
             alert("An error occurred: " + error);
         }
     });
-
-});
-
+   
+}
 
 initialize();

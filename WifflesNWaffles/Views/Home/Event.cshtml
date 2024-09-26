@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="~/css/Event.css" asp-append-version="true" />
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBpeJBOLtAK5zsvf6cK8sxE44UkFWuKJ0"></script>
 <div class="grid-x" id="RSVPButton" style="height: 60px; margin-top: 20px; margin-bottom: 10px;">
-    <div class="cell small-offset-1 small-10 medium-offset-5 medium-2 large-offset-5 large-2" data-selector="" style="background-color:#ff4d4d; display: flex; justify-content: center; align-items: center;  font-family: monospace; font-size: 25px; cursor: pointer">
+    <div class="cell small-offset-1 small-10 medium-offset-5 medium-2 large-offset-5 large-2" data-selector="RSVP" style="background-color:#ff4d4d; display: flex; justify-content: center; align-items: center;  font-family: monospace; font-size: 25px; cursor: pointer">
         RSVP
 
     </div>
@@ -20,7 +20,7 @@
         What:
     </div>
     <div class="eventInfo cell small-8 medium-6 large-6" style="">
-        2nd "Sometimes" Annual Wiffles N' Waffles. A waffle feast and a 3 inning, officiated game of Wiffle ball.Teams will be decided randomly on game day. Contrary to popular belief this event is not sponsored by Waffle House or Denny’s. Because of the lack of sponsorship this year and the ongoing issues with the supply chain, we will be resorting to Eggo waffles this year. While waffles will be provided, if you could bring a topping that would be great! This could consist of a spread, jelly, jam, cream, syrup or anything else you can think of. Please let me know what you plan on bringing so we have a nice medley of toppings. Dogs are allowed.
+        2nd "Sometimes" Annual Wiffles N' Waffles. A waffle feast and a 3 inning, officiated game of Wiffle ball.Teams will be decided randomly on game day. Contrary to popular belief this event is not sponsored by Waffle House or Denny’s. Because of the lack of sponsorship this year and the ongoing issues with the supply chain, we will be resorting to Eggo waffles this year. While waffles will be provided, if you could bring a topping or supply that would be great! This could consist of a spread, jelly, jam, cream, syrup, plates, silverware or anything else you can think of. Please let me know what you plan on bringing so we have a nice medley of toppings and supplies. "Spread" the word!
 
     </div>
 </div>
@@ -29,7 +29,7 @@
         When: 
     </div>
     <div class="eventInfo cell small-8 medium-6 large-6" style="">
-        6:00 PM PST Wednesday, September 25th, 2024
+        6:00 PM PST Friday, September 27th, 2024
     </div>
     
 </div>
@@ -43,25 +43,6 @@
 
 </div>
 
-
-<!--<div class="grid-x">
-    <div class="cell small-offset-1 small-10 medium-offset-3 medium-6 large-offset-3 large-6" style="background-color: black; color:white; font-family:monospace">
-
-        
-
-        <h1>Who: &nbsp;&nbsp;  You</h1>
-        <h1>What:&nbsp;&nbsp; 2nd "Sometimes" Annual Wiffles N Waffles</h1>
-        <h1>When:&nbsp;&nbsp; Wednesday, September 25th, 2024 </h1>
-        <h1>Why: &nbsp;&nbsp;  Why not</h1>
-        <h1>Where:&nbsp;&nbsp; 2700 N Park Dr, Bellingham, WA 98225</h1>
-
-
-
-    </div>
-
-
-</div>-->
-
 <div class="grid-x" style="">
     <div class="cell small-offset-1 small-10 medium-offset-3 medium-6 large-offset-3 large-6" id="map"> 
 
@@ -70,29 +51,27 @@
 </div>
 
 
+<script src="~/js/Event/event.js"></script>
 
 
 <script>
     function initMap() {
-        // The address you want to show on the map
+        
        var address = '2700 N Park Dr, Bellingham, WA 98225';
 
-        // Create a map centered on the United States
+        
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
-            center: { lat: 37.4221, lng: -122.0841 } // Default center
+            center: { lat: 37.4221, lng: -122.0841 } 
         });
 
-        // Create a geocoder to turn an address into a LatLng
         var geocoder = new google.maps.Geocoder();
 
-        // Geocode the address
         geocoder.geocode({ 'address': address }, function (results, status) {
             if (status === 'OK') {
-                // Center the map on the address location
+               
                 map.setCenter(results[0].geometry.location);
 
-                // Place a marker at the location
                 var marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
@@ -102,7 +81,5 @@
             }
         });
     }
-
-    // Initialize the map
     window.onload = initMap;
 </script>

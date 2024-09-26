@@ -15,9 +15,30 @@
 </div>
 
 <div class="grid-x">
-    <div class="cell small-offset-1 small-10 medium-offset-3 medium-6 large-offset-3 large-6" style="display: flex; justify-content: center; align-items: center;">
+    <div id="imageContainer" class="cell small-offset-1 small-10 medium-offset-3 medium-6 large-offset-3 large-6" style="display: flex; justify-content: center; align-items: center;">
 
         <img id="trophyImage" src="~/images/trophy.jpg" />
+        <div id="spinner" class="spinner"></div>
    </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var img = document.getElementById("trophyImage");
+            var spinner = document.getElementById("spinner");
+
+            img.onload = function () {
+                spinner.style.display = "none";
+                img.style.display = "block";
+            };
+
+            img.onerror = function () {
+                spinner.innerHTML = "Error loading image!";
+            };
+
+            img.src = img.src;
+        });
+    </script>
+}
 

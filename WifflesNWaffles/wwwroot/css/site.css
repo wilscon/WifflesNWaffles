@@ -34,6 +34,7 @@ main {
 
 .navbar {
     background-color: #000000;
+    
 }
 
 
@@ -75,6 +76,7 @@ label {
     margin-top: 10px;
     font-weight: bold;
     color: white;
+    font-family: monospace;
 }
 
 input[type="text"], input[type="email"], input[type="tel"], select {
@@ -94,12 +96,10 @@ input[type="submit"] {
     cursor: pointer;
     margin-top: 20px;
     width: 100%;
+    font-family: monospace;
 }
 
-    input[type="submit"]:hover {
-        background-color: #45a049;
-    }
-
+   
 
 
 
