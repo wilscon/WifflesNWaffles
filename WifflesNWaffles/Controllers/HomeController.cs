@@ -79,10 +79,42 @@ namespace WifflesNWaffles.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Teams() {
+
+            /*IEnumerable<RSVPDBModel> attendees = await _context.attendees.ToListAsync();
+            List<AttendeesModel> Team1  = new List<AttendeesModel> { };
+            List<AttendeesModel> Team2 = new List<AttendeesModel> { };*/
+
+            List<RSVPDBModel> attendees = await _context.attendees.ToListAsync();
+
+            // Convert the IEnumerable to a List to access by index
+            
+
+            // Initialize Team1 and Team2 lists
+            //List<AttendeesModel> Team1 = new List<AttendeesModel>();
+            //List<AttendeesModel> Team2 = new List<AttendeesModel>();
+
+            TeamsModel teams = new TeamsModel();
+            List<AttendeesModel> Team1;
+            List<AttendeesModel> Team2;
+            TeamAssigner.AssignTeams(attendees, out Team1, out Team2);
+            teams.Team1 = Team1;
+            teams.Team2 = Team2;
+            teams.Team1Name = TeamNameGenerator.GenerateRandomTeamName();
+            teams.Team2Name = TeamNameGenerator.GenerateRandomTeamName();
+
+            // Assign the first half of attendees to Team1
+            
+           
+                return View("Teams",teams);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Trophy() {
 
             return View("Trophy");
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Submit([FromBody] RSVPModel form)

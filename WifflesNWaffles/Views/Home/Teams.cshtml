@@ -1,0 +1,39 @@
+﻿@model TeamsModel
+
+
+<h1 style="color: white; text-align: center;"> Teams</h1>
+
+<div class="grid-x" id="" style="height: 60px; margin-top: 20px; margin-bottom: 10px;">
+    <div class="cell small-offset-1 small-10 medium-offset-5 medium-2 large-offset-5 large-2" data-selector="teams" style="background-color:#ff4d4d; display: flex; justify-content: center; align-items: center;  font-family: monospace; font-size: 25px; cursor: pointer">
+        Generate Teams
+
+    </div>
+
+</div>
+
+<div class="grid-x" style="display:none;" data-selector="teamsDiv">
+    <div class="cell small-offset-1 small-10 medium-offset-1 medium-10 large-offset-1 large-10" style="color:white;">
+        <h3>@Model.Team1Name</h3>
+            <ol>
+                @foreach (var attendee in Model.Team1){
+                  <li>@attendee.FirstName @attendee.LastName</li>
+                }
+
+            </ol>
+        
+           
+           
+           <h3>@Model.Team2Name</h3>
+        <ol>
+            @foreach (var attendee in Model.Team2)
+            {
+                <li>@attendee.FirstName @attendee.LastName</li>
+            }
+
+        </ol>
+
+    </div>
+
+</div>
+
+<script src="~/js/Teams/Teams.js"></script>
