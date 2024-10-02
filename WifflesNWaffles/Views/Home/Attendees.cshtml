@@ -9,10 +9,27 @@
     2024 Attendees 
 </h1>
 
+<div class="grid-x">
+    <div class="cell small-offset-1 small-10 medium-offset-1 medium-10 large-offset-1 large-10" style="display: flex;">
+        <p style="color: white;">Year </p>
+        <select id="yearDropdown" style="width: 100px; margin-left: 10px;">
+            <option  value="2022">2022</option>
+            <option selected value="2024">2024</option>
+        </select>
+    </div>
+
+</div>
+
+
 
 <div class="grid-x">
     <div class="cell small-offset-1 small-10 medium-offset-1 medium-10 large-offset-1 large-10">
-        <table class="table-stripes">
+        <div id="attendeesContainer">
+
+            @await Html.PartialAsync("_AttendeesTable.cshtml", Model)
+        </div>
+       
+        <!--<table class="table-stripes">
             <thead>
                 <tr>
                     <th>Profile Image</th>
@@ -47,12 +64,15 @@
                     </tr>
                 }
             </tbody>
-        </table>
+        </table>  -->
 
     </div>
     
 
 </div>
+
+
+<script src="~/js/Attendees/Attendees.js"></script>
 
 
 

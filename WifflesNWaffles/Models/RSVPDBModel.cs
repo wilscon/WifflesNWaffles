@@ -10,11 +10,11 @@ namespace WifflesNWaffles.Models
         public string FirstName { get; set; }
 
         
-        [Key]
-        public string Email { get; set; }
+        
+        public string? Email { get; set; }
 
         [Column("phone_number")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         public string? Topping { get; set; }
 
@@ -22,6 +22,10 @@ namespace WifflesNWaffles.Models
         
         [Column("last_name")]
         public string LastName { get; set; }
+
+        public string Year { get; set; }
+        [Key]
+        public Guid id { get; set; }
 
 
     }

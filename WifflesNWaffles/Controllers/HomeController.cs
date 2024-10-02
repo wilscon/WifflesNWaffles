@@ -42,7 +42,7 @@ namespace WifflesNWaffles.Controllers
             
             
             
-            IEnumerable<RSVPDBModel> attendees = await _context.attendees.ToListAsync();
+            IEnumerable<RSVPDBModel> attendees = await _context.attendees.Where(a => a.Year == "2024").ToListAsync();
             List<AttendeesModel> people = new List<AttendeesModel> {};
             
             foreach (var attendee in attendees)
@@ -57,6 +57,26 @@ namespace WifflesNWaffles.Controllers
            
 
             return View("Attendees",people);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ChangeYear(string year) {
+
+
+            IEnumerable<RSVPDBModel> attendees = await _context.attendees.Where(a => a.Year == year).ToListAsync();
+
+            List<AttendeesModel> people = new List<AttendeesModel> { };
+
+            foreach (var attendee in attendees)
+            {
+                string base64Image = GenerateProfileImageBase64(attendee.FirstName[0].ToString() + attendee.LastName[0].ToString(), 40, 40);
+
+                people.Add(new AttendeesModel { FirstName = attendee.FirstName, LastName = attendee.LastName, Topping = attendee.Topping, Attendance = (AttendanceStatus)attendee.Attendance, ProfileImage = base64Image });
+
+            }
+
+            return PartialView("Views/Home/_AttendeesTable.cshtml", people);
+
         }
 
         [HttpGet]
@@ -81,18 +101,10 @@ namespace WifflesNWaffles.Controllers
         [HttpGet]
         public async Task<IActionResult> Teams() {
 
-            /*IEnumerable<RSVPDBModel> attendees = await _context.attendees.ToListAsync();
-            List<AttendeesModel> Team1  = new List<AttendeesModel> { };
-            List<AttendeesModel> Team2 = new List<AttendeesModel> { };*/
-
-            List<RSVPDBModel> attendees = await _context.attendees.ToListAsync();
-
-            // Convert the IEnumerable to a List to access by index
             
 
-            // Initialize Team1 and Team2 lists
-            //List<AttendeesModel> Team1 = new List<AttendeesModel>();
-            //List<AttendeesModel> Team2 = new List<AttendeesModel>();
+            List<RSVPDBModel> attendees = await _context.attendees.ToListAsync();
+            
 
             TeamsModel teams = new TeamsModel();
             List<AttendeesModel> Team1;
@@ -130,6 +142,8 @@ namespace WifflesNWaffles.Controllers
                 PhoneNumber = form.PhoneNumber,
                 Topping = form.Topping,
                 Attendance = (int)form.Attendance,
+                Year =  DateTime.Now.Year.ToString(),
+                id = Guid.NewGuid(),
 
             };
 
