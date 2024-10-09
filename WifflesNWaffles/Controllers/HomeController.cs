@@ -14,6 +14,7 @@ using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 using static Azure.Core.HttpHeader;
 using static System.Net.Mime.MediaTypeNames;
+using WifflesNWaffles.Extensions;
 
 namespace WifflesNWaffles.Controllers
 {
@@ -39,9 +40,6 @@ namespace WifflesNWaffles.Controllers
         [HttpGet]
         public async Task<IActionResult> Attendees() {
 
-            
-            
-            
             IEnumerable<RSVPDBModel> attendees = await _context.attendees.Where(a => a.Year == "2024").ToListAsync();
             List<AttendeesModel> people = new List<AttendeesModel> {};
             
@@ -52,9 +50,6 @@ namespace WifflesNWaffles.Controllers
                 people.Add(new AttendeesModel { FirstName = attendee.FirstName, LastName = attendee.LastName, Topping = attendee.Topping, Attendance = (AttendanceStatus)attendee.Attendance, ProfileImage = base64Image });
                
             }
-
-
-           
 
             return View("Attendees",people);
         }
@@ -115,10 +110,10 @@ namespace WifflesNWaffles.Controllers
             teams.Team1Name = TeamNameGenerator.GenerateRandomTeamName();
             teams.Team2Name = TeamNameGenerator.GenerateRandomTeamName();
 
-            // Assign the first half of attendees to Team1
+            
             
            
-                return View("Teams",teams);
+            return View("Teams",teams);
         }
 
         [HttpGet]
@@ -131,25 +126,8 @@ namespace WifflesNWaffles.Controllers
         [HttpPost]
         public async Task<IActionResult> Submit([FromBody] RSVPModel form)
         {
+            RSVPDBModel Model = form.ToDBModel();
 
-           
-
-            RSVPDBModel Model = new RSVPDBModel
-            {
-                FirstName = form.FirstName,
-                LastName = form.LastName,
-                Email = form.Email,
-                PhoneNumber = form.PhoneNumber,
-                Topping = form.Topping,
-                Attendance = (int)form.Attendance,
-                Year =  DateTime.Now.Year.ToString(),
-                id = Guid.NewGuid(),
-
-            };
-
-
-
-            
             try
             {
                 _context.attendees.Add(Model);
