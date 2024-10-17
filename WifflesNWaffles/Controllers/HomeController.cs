@@ -12,6 +12,8 @@ namespace WifflesNWaffles.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
 
+        private string? MAPAPIKEY = Environment.GetEnvironmentVariable("GOOGLE_MAPS_API_KEY");
+
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
@@ -55,8 +57,9 @@ namespace WifflesNWaffles.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Event() { 
-        
+        public async Task<IActionResult> Event()
+        {
+            ViewData["ApiKey"] = MAPAPIKEY;
             return View("Event");
         
         }
