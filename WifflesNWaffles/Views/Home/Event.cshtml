@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
+﻿
 <link rel="stylesheet" href="~/css/Event.css" asp-append-version="true" />
 <script src="https://maps.googleapis.com/maps/api/js?key=@ViewData["ApiKey"]"></script>
 <div class="grid-x" id="RSVPButton" style="height: 60px; margin-top: 20px; margin-bottom: 10px;">
@@ -40,46 +35,10 @@
     <div class="eventInfo cell small-8 medium-6 large-6" style="padding:5px;">
         2799-2705 N Park Dr, Bellingham, WA 98225
     </div>
-
 </div>
 
 <div class="grid-x" style="">
-    <div class="cell small-offset-1 small-10 medium-offset-3 medium-7 large-offset-3 large-7" id="map"> 
-
-
-    </div>
+    <div class="cell small-offset-1 small-10 medium-offset-3 medium-7 large-offset-3 large-7" id="map"></div>
 </div>
 
-
 <script src="~/js/Event/event.js"></script>
-
-
-<script>
-    function initMap() {
-
-        var address = '2799-2705 N Park Dr, Bellingham, WA 98225';
-
-        
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: { lat: 37.4221, lng: -122.0841 } 
-        });
-
-        var geocoder = new google.maps.Geocoder();
-
-        geocoder.geocode({ 'address': address }, function (results, status) {
-            if (status === 'OK') {
-               
-                map.setCenter(results[0].geometry.location);
-
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
-        });
-    }
-    window.onload = initMap;
-</script>

@@ -61,7 +61,6 @@ namespace WifflesNWaffles.Controllers
         {
             ViewData["ApiKey"] = MAPAPIKEY;
             return View("Event");
-        
         }
 
         public async Task<IActionResult> History() {
@@ -135,6 +134,4 @@ namespace WifflesNWaffles.Controllers
         }
 
     }
-
-    
 }
