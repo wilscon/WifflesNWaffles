@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Globalization;
+using System.Resources;
 using WifflesNWaffles.Data;
 using WifflesNWaffles.Models;
 using WifflesNWaffles.Extensions;
@@ -60,7 +62,16 @@ namespace WifflesNWaffles.Controllers
         public async Task<IActionResult> Event()
         {
             ViewData["ApiKey"] = MAPAPIKEY;
-            return View("Event");
+
+            ResourceManager resourceManager = new ResourceManager("WifflesNWaffles.Resources.event", typeof(HomeController).Assembly);
+            EventResourceViewModel model = new EventResourceViewModel()
+            {
+              Address = resourceManager.GetString("Address", CultureInfo.CurrentCulture),
+              Date  = resourceManager.GetString("Date", CultureInfo.CurrentCulture),
+              Description = resourceManager.GetString("Description",CultureInfo.CurrentCulture)
+            };
+
+            return View("Event",model);
         }
 
         public async Task<IActionResult> History() {
